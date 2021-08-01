@@ -7,11 +7,17 @@ from polls.models import *
 
 
 class ChoiceCreateView(generics.CreateAPIView):
+    """
+    Ручка для создания вариантов ответа
+    """
     serializer_class = ChoiceSerializer
     permission_classes = (permissions.IsAdminUser,)
 
 
 class FinishedPollsListView(generics.ListAPIView):
+    """
+    Ручка для получения завершенных опросов
+    """
     serializer_class = PollListSerializer
 
     def get_queryset(self):
@@ -23,47 +29,71 @@ class FinishedPollsListView(generics.ListAPIView):
 
 
 class PollListView(generics.ListAPIView):
+    """
+    Ручка для получения всех опросов
+    """
     serializer_class = PollListSerializer
     queryset = Poll.objects.all()
     permission_classes = (permissions.IsAdminUser,)
 
 
 class ActivePollListView(generics.ListAPIView):
+    """
+    Ручка для получения активных опросов
+    """
     serializer_class = PollDetailSerializer
     queryset = Poll.objects.filter(time_finish__gte=now())
     permission_classes = (permissions.IsAuthenticated,)
 
 
 class PollCreateView(generics.CreateAPIView):
+    """
+    Ручка для создания опросов
+    """
     serializer_class = PollDetailSerializer
     permission_classes = (permissions.IsAdminUser,)
 
 
 class PollDetailView(generics.RetrieveUpdateDestroyAPIView):
+    """
+    Ручка для получения информации об опросе
+    """
     serializer_class = PollDetailSerializer
     queryset = Poll.objects.all()
     permission_classes = (permissions.IsAdminUser,)
 
 
 class QuestionListView(generics.ListAPIView):
+    """
+    Ручка для списка вопросов
+    """
     serializer_class = QuestionSerializer
     queryset = Question.objects.all()
     permission_classes = (permissions.IsAdminUser,)
 
 
 class QuestionCreateView(generics.CreateAPIView):
+    """
+    Ручка для создания вопросов
+    """
     serializer_class = QuestionDetailSerializer
     queryset = Question.objects.all()
     permission_classes = (permissions.IsAdminUser,)
 
 
 class QuestionDetailView(generics.RetrieveUpdateDestroyAPIView):
+    """
+    Ручка для получения вопроса
+    """
     serializer_class = QuestionDetailSerializer
     queryset = Question.objects.all()
     permission_classes = (permissions.IsAdminUser,)
 
 
 class AnswerCreateView(generics.CreateAPIView):
+    """
+    Ручка для ответов на вопросы
+    """
     serializer_class = AnswerTextSerializer
     queryset = Answer.objects.all()
     permission_classes = (permissions.IsAuthenticated,)

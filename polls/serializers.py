@@ -3,6 +3,9 @@ from polls.models import *
 
 
 class ChoiceSerializer(serializers.ModelSerializer):
+    """
+    Сериалайзер для вариантов ответа
+    """
 
     class Meta:
         model = Choice
@@ -10,6 +13,9 @@ class ChoiceSerializer(serializers.ModelSerializer):
 
 
 class QuestionSerializer(serializers.ModelSerializer):
+    """
+    Сериалайзер для вывода вопросов
+    """
     choices = ChoiceSerializer(many=True, required=False)
     poll_id = serializers.StringRelatedField()
 
@@ -19,6 +25,9 @@ class QuestionSerializer(serializers.ModelSerializer):
 
 
 class QuestionDetailSerializer(serializers.ModelSerializer):
+    """
+    Сериалайзер для записи вопросов
+    """
     choices = ChoiceSerializer(many=True, required=False)
 
     class Meta:
@@ -27,18 +36,27 @@ class QuestionDetailSerializer(serializers.ModelSerializer):
 
 
 class PollDetailSerializer(serializers.ModelSerializer):
+    """
+    Сериалайзер для записи опросов
+    """
     class Meta:
         model = Poll
         fields = '__all__'
 
 
 class PollListSerializer(serializers.ModelSerializer):
+    """
+    Сериалайзер для вывода опросов
+    """
     class Meta:
         model = Poll
         fields = ('title', 'description')
 
 
 class AnswerTextSerializer(serializers.ModelSerializer):
+    """
+    Сериалайзер для текстовых ответов
+    """
     user_id = serializers.StringRelatedField(read_only=True)
     question_id = serializers.StringRelatedField(read_only=True)
 
@@ -48,6 +66,9 @@ class AnswerTextSerializer(serializers.ModelSerializer):
 
 
 class AnswerOneChoiceSerializer(serializers.ModelSerializer):
+    """
+    Сериалайзер для ответов с одним вариантом
+    """
     user_id = serializers.StringRelatedField(read_only=True)
     question_id = serializers.StringRelatedField(read_only=True)
 
@@ -57,6 +78,9 @@ class AnswerOneChoiceSerializer(serializers.ModelSerializer):
 
 
 class AnswerManyChoiceSerializer(serializers.ModelSerializer):
+    """
+    Сериалайзер для ответов с несколькими вариантами
+    """
     user_id = serializers.StringRelatedField(read_only=True)
     question_id = serializers.StringRelatedField(read_only=True)
 
