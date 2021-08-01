@@ -159,12 +159,12 @@ password - simple1234
     {
     "many_choices": [<варианты ответа через запятую>]}
     
-    or
+or
     
     {
     "one_choice": <вариант ответа>}
     
-    or
+or
     
     {
     "self_text": <Текст ответа>}
