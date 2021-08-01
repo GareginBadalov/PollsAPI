@@ -174,3 +174,5 @@ or
 
     <localhost>:8000/api/v1/polls/poll/finished/
 
+### Технологии
+Python, Django, DRF
