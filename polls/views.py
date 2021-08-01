@@ -14,6 +14,15 @@ class ChoiceCreateView(generics.CreateAPIView):
     permission_classes = (permissions.IsAdminUser,)
 
 
+class ChoiceUpdateView(generics.RetrieveUpdateDestroyAPIView):
+    """
+    Ручка для создания вариантов ответа
+    """
+    serializer_class = ChoiceSerializer
+    queryset = Choice.objects.all()
+    permission_classes = (permissions.IsAdminUser,)
+
+
 class FinishedPollsListView(generics.ListAPIView):
     """
     Ручка для получения завершенных опросов
@@ -67,7 +76,7 @@ class QuestionListView(generics.ListAPIView):
     """
     Ручка для списка вопросов
     """
-    serializer_class = QuestionSerializer
+    serializer_class = QuestionDetailSerializer
     queryset = Question.objects.all()
     permission_classes = (permissions.IsAdminUser,)
 
@@ -76,7 +85,7 @@ class QuestionCreateView(generics.CreateAPIView):
     """
     Ручка для создания вопросов
     """
-    serializer_class = QuestionDetailSerializer
+    serializer_class = QuestionSerializer
     queryset = Question.objects.all()
     permission_classes = (permissions.IsAdminUser,)
 
@@ -85,7 +94,7 @@ class QuestionDetailView(generics.RetrieveUpdateDestroyAPIView):
     """
     Ручка для получения вопроса
     """
-    serializer_class = QuestionDetailSerializer
+    serializer_class = QuestionSerializer
     queryset = Question.objects.all()
     permission_classes = (permissions.IsAdminUser,)
 

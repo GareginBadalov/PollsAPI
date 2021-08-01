@@ -16,12 +16,10 @@ class QuestionSerializer(serializers.ModelSerializer):
     """
     Сериалайзер для вывода вопросов
     """
-    choices = ChoiceSerializer(many=True, required=False)
-    poll_id = serializers.StringRelatedField()
 
     class Meta:
         model = Question
-        fields = ('id', 'poll_id', 'text', 'question_type', 'choices')
+        fields = ('id', 'poll_id', 'text', 'question_type')
 
 
 class QuestionDetailSerializer(serializers.ModelSerializer):
@@ -29,6 +27,7 @@ class QuestionDetailSerializer(serializers.ModelSerializer):
     Сериалайзер для записи вопросов
     """
     choices = ChoiceSerializer(many=True, required=False)
+    poll_id = serializers.StringRelatedField()
 
     class Meta:
         model = Question
